@@ -5,7 +5,7 @@ output:
     keep_md: true
 ---
 
-```{r, ECHO = FALSE}
+```{r, echo = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
@@ -27,7 +27,8 @@ summary <- summarise(data, total_steps = sum(steps))
 summary1 <- filter(summary, !is.na(total_steps))
 library(ggplot2)
 ggplot(summary1, aes(x = total_steps)) +
-    geom_histogram()
+    geom_histogram() +
+  labs(title = "Histogram of the total number of steps taken each day")
 ```
 
 ```{r}
@@ -36,7 +37,7 @@ summary2 <- summarise(summary1, mean = mean(total_steps), median =median(total_s
 
 ```
 
-The mean number of steps taken each day is `r summary2$mean`, and the median number of steps taken each day is `r summary2$median`.
+The mean number of steps taken each day is `r as.integer(summary2$mean)`, and the median number of steps taken each day is `r as.integer(summary2$median)`.
 
 
     
@@ -73,13 +74,19 @@ for ( i in 1:length(merge$steps)) {
 data1 <- select(merge, -average_steps)
 ```
 
+The total number of missing values in the dataset is `r total_nas`
+
+Use the mean for that 5_minute interval to fill in the missing values.
+
+
 ```{r}
 #Histogram of the total number of steps taken each day after missing values are imputed
 data1 <- group_by(data1, date)
 summary4 <- summarise(data1, total_steps = sum(steps))
 
 ggplot(summary4, aes(x = total_steps)) +
-    geom_histogram()
+    geom_histogram() +
+    labs(title = "Histogram of the total number of steps taken each day(Imputed)")
 
 summary5 <- summarise(summary4, mean = mean(total_steps), median =median(total_steps))
 
@@ -87,7 +94,7 @@ summary5 <- summarise(summary4, mean = mean(total_steps), median =median(total_s
 ```
 
      
-After the missing value is imputed, the mean number of steps taken each day is `r summary5$mean`, and the median number of steps taken each day is `r summary5$median`.
+After the missing value is imputed, the mean number of steps taken each day is `r as.integer(summary5$mean)`, and the median number of steps taken each day is `r as.integer(summary5$median)`.
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -98,7 +105,7 @@ data1$date <- as.Date(data1$date)
 data1$weekdays <- weekdays(data1$date)
 weekid <- c()
 for (i in 1:length(data1$weekdays)){
-    if(data1$weekdays[i] == "Saturday" | data1$weekdays[i] == "Sunday"){
+    if(data1$weekdays[i] == "星期日" | data1$weekdays[i] == "星期六"){
         weekid<- c(weekid,"Weekend")
     } else{
         weekid <- c(weekid, "Weekday")
@@ -114,9 +121,3 @@ ggplot(summary6, aes(x = interval, y = average_steps)) +
     geom_line() +
     facet_grid(id~.)
 ```
-
-
-
-
-
-
