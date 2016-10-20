@@ -127,4 +127,4 @@ ggplot(summary6, aes(x = interval, y = average_steps)) +
     facet_grid(id~.)
 ```
 
-![](PA_template_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](figure/unnamed-chunk-9-1.png)<!-- -->
