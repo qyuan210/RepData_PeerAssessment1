@@ -25,7 +25,7 @@ ggplot(summary1, aes(x = total_steps)) +
   labs(title = "Histogram of the total number of steps taken each day")
 ```
 
-![](PA_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](figure/unnamed-chunk-3-1.png)<!-- -->
 
 
 ```r
@@ -48,7 +48,7 @@ ggplot(summary3, aes(x = interval, y = average_steps))+
     geom_line()
 ```
 
-![](PA_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](figure/unnamed-chunk-5-1.png)<!-- -->
 
 
 ```r
@@ -91,7 +91,7 @@ ggplot(summary4, aes(x = total_steps)) +
     labs(title = "Histogram of the total number of steps taken each day(Imputed)")
 ```
 
-![](PA_template_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](figure/unnamed-chunk-8-1.png)<!-- -->
 
 ```r
 summary5 <- summarise(summary4, mean = mean(total_steps), median =median(total_steps))
