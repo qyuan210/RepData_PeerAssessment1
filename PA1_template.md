@@ -110,7 +110,7 @@ data1$date <- as.Date(data1$date)
 data1$weekdays <- weekdays(data1$date)
 weekid <- c()
 for (i in 1:length(data1$weekdays)){
-    if(data1$weekdays[i] == "鏄熸湡鏃?" | data1$weekdays[i] == "鏄熸湡鍏?"){
+    if(data1$weekdays[i] == "星期六?" | data1$weekdays[i] == "星期日"){
         weekid<- c(weekid,"Weekend")
     } else{
         weekid <- c(weekid, "Weekday")
